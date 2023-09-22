@@ -14,7 +14,7 @@ jobs:
 
       - name: Load the PR ID
         id: pr
-        run: echo "::set-output name=id::$(<pr-id.txt)"
+        run: echo "pr_id=$(<pr-id.txt)" >> $GITHUB_OUTPUT
 
       - name: Update status Comment
         uses: actions-cool/maintain-one-comment@v3.1.1
@@ -24,7 +24,7 @@ jobs:
             🚀 Stack Insights and Cloud Pod state for this CI build are available here: https://app.localstack.cloud/ci 🚀
             <!-- Sticky Pull Request Comment -->
           body-include: '<!-- Sticky Pull Request Comment -->'
-          number: ${{ steps.pr.outputs.id }}
+          number: ${{ steps.pr.outputs.pr_id }}
 
   # failed:
   #   runs-on: ubuntu-latest
