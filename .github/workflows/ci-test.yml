@@ -35,6 +35,7 @@ jobs:
           awslocal s3 ls | grep test123
 
           awslocal sqs create-queue --queue-name q1
+          awslocal sqs create-queue --queue-name q2
 
           awslocal sns create-topic --name t1
           awslocal sns create-topic --name t2
