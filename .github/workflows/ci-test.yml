@@ -9,8 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Prepare LocalStack Build
+        uses: LocalStack/setup-localstack/prepare@pr-integration
+      - name: Finish LocalStack Build
+        uses: LocalStack/setup-localstack/finish@pr-integration
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@v0.1.2
+        # uses: LocalStack/setup-localstack@v0.1.2
+        uses: LocalStack/setup-localstack@pr-integration
         with:
           install-awslocal: 'true'
         env:
