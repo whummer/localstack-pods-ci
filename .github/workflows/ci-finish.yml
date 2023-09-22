@@ -12,6 +12,10 @@ jobs:
     # if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
     steps:
 
+      - name: Load the PR ID
+        id: pr
+        run: echo "::set-output name=id::$(<pr-id.txt)"
+
       - name: Update status Comment
         uses: actions-cool/maintain-one-comment@v3.1.1
         with:

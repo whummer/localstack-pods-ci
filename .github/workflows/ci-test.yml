@@ -1,4 +1,4 @@
-name: Start CI Build
+name: Run CI Tests
 
 on:
   pull_request:
@@ -18,7 +18,9 @@ jobs:
           CI_PROJECT: whummer-ci-test
           CONFIGURATION: "DOCKER_FLAGS='-e CI_PROJECT=whummer-ci-test'"
 
-      - name:
+      - name: Run tests
         run: |
           awslocal s3 mb s3://test123
           awslocal s3 ls | grep test123
+
+          awslocal sqs create-queue --queue-name q1
