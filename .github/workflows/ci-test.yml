@@ -37,3 +37,4 @@ jobs:
           awslocal sqs create-queue --queue-name q1
 
           awslocal sns create-topic --name t1
+          awslocal sns create-topic --name t2
