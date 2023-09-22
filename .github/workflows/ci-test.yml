@@ -1,4 +1,4 @@
-name: Start CI Build
+name: Run CI Tests
 
 on:
   pull_request:
