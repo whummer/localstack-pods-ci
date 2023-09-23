@@ -11,8 +11,12 @@ jobs:
     steps:
       - name: Prepare LocalStack Build
         uses: LocalStack/setup-localstack/prepare@pr-integration
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Finish LocalStack Build
         uses: LocalStack/setup-localstack/finish@pr-integration
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Start LocalStack
         # uses: LocalStack/setup-localstack@v0.1.2
         uses: LocalStack/setup-localstack@pr-integration
