@@ -10,24 +10,14 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Start LocalStack
-        uses: LocalStack/setup-localstack@v0.1.2
+        # uses: LocalStack/setup-localstack@v0.1.2
+        uses: LocalStack/setup-localstack@pr-integration
         with:
           install-awslocal: 'true'
+          ci-project: whummer-ci-test
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
-          CI_PROJECT: whummer-ci-test
-          CONFIGURATION: "DOCKER_FLAGS='-e CI_PROJECT=whummer-ci-test'"
-
-      - name: Save PR number
-        if: ${{ always() }}
-        run: echo ${{ github.event.number }} > ./pr-id.txt
-
-      - name: Upload PR number
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: pr
-          path: ./pr-id.txt
 
       - name: Run tests
         run: |
