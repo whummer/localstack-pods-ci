@@ -1,0 +1,18 @@
+name: Finish CI Build
+
+on:
+  workflow_run:
+    workflows: ["Run CI Tests"]
+    types:
+      - completed
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Finalize PR comment
+        # uses: LocalStack/setup-localstack/finish@0.1.2
+        uses: LocalStack/setup-localstack/finish@pr-integration
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          ci-project: whummer-ci-test
